@@ -49,18 +49,17 @@ Admin should be able to
 
 ### Built with -FrontEnd
 
--React
--Redux Toolkiut
--Material UI
-
+- React
+- Redux Toolkit
+- Material UI
 - Mobile-first workflow
 
 ### Built with -Backend
 
--Nodejs
--express
--MongoDb
--Passport js
+- Nodejs
+- express
+- MongoDb
+- Passport js
 
 ### What I learned
 

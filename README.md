@@ -66,14 +66,13 @@ Admin should be able to
 - I was able to understand how to create a full stack application using react node express and mongo db,
 - I was able to understand how to redux toolkit to fetch data fro my backend api.
 - I was able to understand how to build rest apis using the 3-layer architecture
+  ![](./images/architecture.png)
 - I was able to understand how to use material ui framework to style my application
 - I was able to understand how to carry out tests using jest
 - I was able to understand how to perform ci/cd
 - I was able to understand how to deploy my application on a docker container and host it on aws
 
 ### Continued development
-
-I would like in future to use Convert this app to use React js.
 
 ## Author
 
@@ -82,4 +81,5 @@ I would like in future to use Convert this app to use React js.
 
 ## Acknowledgments
 
+I was able to learn how to create a node js app using best practices by following the following gid on github [github](https://github.com/goldbergyoni/nodebestpractices)
 I was able to learn how to create the 3-layer architecture using this wonderful blog post [dev] (https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf)

@@ -18,8 +18,8 @@ I built this app to enable me have a deeper understanding of how to build a full
     - [Screenshot](#screenshot)
     - [Links](#links)
   - [My process](#my-process)
-    - [Built with -FrontEnd](#built-with--frontend)
-    - [Built with -Backend](#built-with--backend)
+    - [Built with - FrontEnd](#built-with---frontend)
+    - [Built with - Backend](#built-with---backend)
     - [What I learned](#what-i-learned)
     - [Continued development](#continued-development)
   - [Author](#author)
@@ -47,14 +47,14 @@ Admin should be able to
 
 ## My process
 
-### Built with -FrontEnd
+### Built with - FrontEnd
 
 - React
 - Redux Toolkit
 - Material UI
 - Mobile-first workflow
 
-### Built with -Backend
+### Built with - Backend
 
 - Nodejs
 - express
@@ -63,13 +63,13 @@ Admin should be able to
 
 ### What I learned
 
-I was able to understand how to create a full stack application using react node express and mongo db,
-I was able to understand how to redux toolkit to fetch data fro my backend api.
-I was able to understand how to build rest apis using the 3-layer architecture
-I was able to understand how to use material ui framework to style my application
-I was able to understand how to carry out tests using jest
-I was able to understand how to perform ci/cd
-I was able to understand how to deploy my application on a docker container and host it on aws
+- I was able to understand how to create a full stack application using react node express and mongo db,
+- I was able to understand how to redux toolkit to fetch data fro my backend api.
+- I was able to understand how to build rest apis using the 3-layer architecture
+- I was able to understand how to use material ui framework to style my application
+- I was able to understand how to carry out tests using jest
+- I was able to understand how to perform ci/cd
+- I was able to understand how to deploy my application on a docker container and host it on aws
 
 ### Continued development
 

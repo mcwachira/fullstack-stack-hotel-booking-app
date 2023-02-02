@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
 import MailList from '../../components/mailList/MailList';
@@ -7,7 +7,32 @@ import { FaArrowCircleRight, FaArrowCircleLeft } from 'react-icons/fa'
 import { ImLocation } from 'react-icons/im'
 import { TbCircleX } from 'react-icons/tb'
 import './hotel.css'
+import { useNavigate, useParams } from 'react-router-dom';
+import useFetch from '../../Hookes/useFetch';
+import { SearchContext } from '../../context/SearchContext.js'
+import { AuthContext } from '../../context/AuthContext';
+import Reserve from '../../components/reserve/Reserve';
 const Hotel = () => {
+
+    const [openModal, setOpenModal] = useState(false)
+
+    const { id } = useParams()
+    console.log(id)
+
+    const { data, loading, error } = useFetch(`/find/${id}`)
+    console.log("🚀 ~ file: Featured.jsx:7 ~ Featured ~  data", data)
+
+    const { dates, options } = useContext(SearchContext)
+    console.log(options)
+
+    const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+    function dayDifference(date1, date2) {
+        const timeDiff = Math.abs(date2?.getTime() - date1?.getTime());
+        const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
+        return diffDays
+    }
+    const days = dayDifference(dates[0]?.endDate, dates[0]?.startDate)
+
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
 
@@ -49,6 +74,21 @@ const Hotel = () => {
         setSlideNumber(newSlideNumber)
     };
 
+
+    const Navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+
+
+    const handleClick = () => {
+
+        if (user) {
+            setOpenModal(true)
+
+        } else {
+            Navigate('/login')
+        }
+
+    }
     return (
         <div>
             <Navbar />
@@ -78,16 +118,16 @@ const Hotel = () => {
                 )}
                 <div className="hotelWrapper">
                     <button className="bookNow">Reserve or Book Now!</button>
-                    <h1 className="hotelTitle">Tower Street Apartments</h1>
+                    <h1 className="hotelTitle">{data?.name}</h1>
                     <div className="hotelAddress">
                         <ImLocation size={30} />
-                        <span>Elton St 125 New york</span>
+                        <span>{data?.city}</span>
                     </div>
                     <span className="hotelDistance">
-                        Excellent location – 500m from center
+                        {data?.distance}
                     </span>
                     <span className="hotelPriceHighlight">
-                        Book a stay over $114 at this property and get a free airport taxi
+                        Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
                     </span>
                     <div className="hotelImages">
                         {photos.map((photo, i) => (
@@ -105,35 +145,26 @@ const Hotel = () => {
                         <div className="hotelDetailsTexts">
                             <h1 className="hotelTitle">Stay in the heart of City</h1>
                             <p className="hotelDesc">
-                                Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
-                                Street Apartments has accommodations with air conditioning and
-                                free WiFi. The units come with hardwood floors and feature a
-                                fully equipped kitchenette with a microwave, a flat-screen TV,
-                                and a private bathroom with shower and a hairdryer. A fridge is
-                                also offered, as well as an electric tea pot and a coffee
-                                machine. Popular points of interest near the apartment include
-                                Cloth Hall, Main Market Square and Town Hall Tower. The nearest
-                                airport is John Paul II International Kraków–Balice, 16.1 km
-                                from Tower Street Apartments, and the property offers a paid
-                                airport shuttle service.
+                                {data.description}
                             </p>
                         </div>
                         <div className="hotelDetailsPrice">
-                            <h1>Perfect for a 9-night stay!</h1>
+                            <h1>Perfect for a {days}-night stay!</h1>
                             <span>
                                 Located in the real heart of Krakow, this property has an
-                                excellent location score of 9.8!
+                                excellent location score of {data?.rating}!
                             </span>
                             <h2>
-                                <b>$945</b> (9 nights)
+                                <b>${data.cheapestPrice * days * options.room}</b> ({days} nights)
                             </h2>
-                            <button>Reserve or Book Now!</button>
+                            <button onClick={handleClick}>Reserve or Book Now!</button>
                         </div>
                     </div>
                 </div>
                 <MailList />
                 <Footer />
             </div>
+            {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
         </div>
     );
 };
